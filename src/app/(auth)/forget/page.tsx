@@ -2,15 +2,12 @@
 import Form from "@/components/Forms/Form";
 import { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signUpSchema } from "@/schemas/signup";
+import { forgetPasswordSchema } from "@/schemas/forget";
 import FormInput from "@/components/Forms/FormInput";
 import Link from "next/link";
 
 type FormValues = {
-  name: string;
   email: string;
-  phone: string;
-  password: string;
 };
 
 const SingUp = () => {
@@ -21,18 +18,12 @@ const SingUp = () => {
   return (
     <div className="md:w-[400px] w-[300px]">
       <h1 className="text-2xl mb-2 text-center text-light_primary dark:text-dark_primary">
-        Sign Up
+        Forget Password
       </h1>
-      <Form submitHandler={onSubmit} resolver={yupResolver(signUpSchema)}>
-        <div className="my-[10px]">
-          <FormInput
-            name="name"
-            type="text"
-            placeholder="Type your name"
-            label="Name"
-            required
-          />
-        </div>
+      <Form
+        submitHandler={onSubmit}
+        resolver={yupResolver(forgetPasswordSchema)}
+      >
         <div className="my-[10px]">
           <FormInput
             name="email"
@@ -42,36 +33,18 @@ const SingUp = () => {
             required
           />
         </div>
-        <div className="my-[10px]">
-          <FormInput
-            name="phone"
-            type="text"
-            placeholder="Type your phone"
-            label="Phone"
-            required
-          />
-        </div>
-        <div className="my-[10px]">
-          <FormInput
-            name="password"
-            type="password"
-            placeholder="Type your password"
-            label="Password"
-            required
-          />
-        </div>
         <div className="flex justify-between items-center">
           <button
             type="submit"
             className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded text-lg hover:opacity-80 duration-300"
           >
-            Sign Up
+            Reset
           </button>
           <Link
             className="text-light_text dark:text-dark_text"
             href={"/signin"}
           >
-            Have an account?
+            Remember Password?
           </Link>
         </div>
       </Form>

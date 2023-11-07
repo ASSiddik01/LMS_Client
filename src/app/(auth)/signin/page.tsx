@@ -2,14 +2,12 @@
 import Form from "@/components/Forms/Form";
 import { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signUpSchema } from "@/schemas/signup";
+import { signInSchema } from "@/schemas/signin";
 import FormInput from "@/components/Forms/FormInput";
 import Link from "next/link";
 
 type FormValues = {
-  name: string;
   email: string;
-  phone: string;
   password: string;
 };
 
@@ -21,33 +19,15 @@ const SingUp = () => {
   return (
     <div className="md:w-[400px] w-[300px]">
       <h1 className="text-2xl mb-2 text-center text-light_primary dark:text-dark_primary">
-        Sign Up
+        Sign In
       </h1>
-      <Form submitHandler={onSubmit} resolver={yupResolver(signUpSchema)}>
-        <div className="my-[10px]">
-          <FormInput
-            name="name"
-            type="text"
-            placeholder="Type your name"
-            label="Name"
-            required
-          />
-        </div>
+      <Form submitHandler={onSubmit} resolver={yupResolver(signInSchema)}>
         <div className="my-[10px]">
           <FormInput
             name="email"
             type="email"
             placeholder="Type your email"
             label="Email"
-            required
-          />
-        </div>
-        <div className="my-[10px]">
-          <FormInput
-            name="phone"
-            type="text"
-            placeholder="Type your phone"
-            label="Phone"
             required
           />
         </div>
@@ -65,13 +45,13 @@ const SingUp = () => {
             type="submit"
             className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded text-lg hover:opacity-80 duration-300"
           >
-            Sign Up
+            Sign In
           </button>
           <Link
             className="text-light_text dark:text-dark_text"
-            href={"/signin"}
+            href={"/forget"}
           >
-            Have an account?
+            Forget Password?
           </Link>
         </div>
       </Form>
