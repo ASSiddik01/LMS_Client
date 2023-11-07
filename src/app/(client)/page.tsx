@@ -23,8 +23,8 @@ const HomePage = () => {
             More then 20k+ trust us and give positive feedback. Find your desire
             courses from them.
           </p>
-          <div className="flex w-full md:justify-start justify-center items-end">
-            <div className="relative mr-4 md:w-full lg:w-full xl:w-1/2 w-2/4">
+          <div className="flex md:flex-row flex-col gap-2 mb-4 w-full md:justify-start justify-end md:items-end">
+            <div className="relative w-full">
               <input
                 type="text"
                 id="hero-field"
@@ -32,7 +32,7 @@ const HomePage = () => {
                 className="w-full bg-dark_text dark:text-dark_bg rounded border border-light_primary dark:border-dark_primary focus:ring-2 focus:ring-light_primary dark:focus:ring-dark_primary focus:border-light_primary dark:focus:border-dark_primary text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
-            <button className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded text-lg">
+            <button className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded text-lg hover:opacity-80 duration-300 w-1/2 mx-auto">
               Find Course
             </button>
           </div>
