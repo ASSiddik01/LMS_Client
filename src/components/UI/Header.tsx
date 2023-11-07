@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 import { FiSearch, FiUser } from "react-icons/fi";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import { PiPhoneCallFill } from "react-icons/pi";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsPinterest, BsFacebook } from "react-icons/bs";
 import Link from "next/link";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +78,7 @@ const Header = () => {
               <p>Call: +321 123 45 978</p>
             </div>
             <div className="w-1/2 dark:text-dark_text text-light_text flex justify-end items-center gap-2 dark:before:bg-dark_secondary before:bg-light_secondary header_top_right">
+              <ThemeSwitcher />
               <BsFacebook
                 size="20"
                 className="dark:text-dark_text text-light_text hover:dark:text-dark_bg hover:text-light_primary duration-300"
@@ -87,7 +88,7 @@ const Header = () => {
                 className="dark:text-dark_text text-light_text hover:dark:text-dark_bg hover:text-light_primary duration-300"
               />
               <AiFillTwitterCircle
-                size="20"
+                size="24"
                 className="dark:text-dark_text text-light_text hover:dark:text-dark_bg hover:text-light_primary duration-300"
               />
               {(role === "admin" || role === "super_admin") && (
@@ -232,6 +233,7 @@ const Header = () => {
             </div>
             <div className="relative flex justify-center p-[30px] ">
               <div className="text-white flex justify-center gap-2">
+                <ThemeSwitcher />
                 <BsFacebook
                   size="24"
                   className="text-white duration-300 text-light_primary dark:text-dark_bg hover:text-light_text dark:hover:text-dark_text"
@@ -241,7 +243,7 @@ const Header = () => {
                   className="text-white duration-300 text-light_primary dark:text-dark_bg hover:text-light_text dark:hover:text-dark_text"
                 />
                 <AiFillTwitterCircle
-                  size="24"
+                  size="28"
                   className="text-white duration-300 text-light_primary dark:text-dark_bg hover:text-light_text dark:hover:text-dark_text"
                 />
               </div>
