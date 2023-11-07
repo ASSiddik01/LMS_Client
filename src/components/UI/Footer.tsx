@@ -1,23 +1,55 @@
 import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import light_logo from "./../../../public/light_logo.png";
+import dark_logo from "./../../../public/dark_logo.png";
+import light_text_logo from "./../../../public/light_text_logo.png";
+import dark_text_logo from "./../../../public/dark_text_logo.png";
 
 const Footer = () => {
+  const { theme, setTheme } = useTheme();
   return (
     <footer className="bg-light_secondary dark:bg-dark_secondary text-dark_bg dark:text-dark_bg">
-      <div className="relative mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      <div className="relative mx-auto px-4 py-12">
         <div className="lg:flex lg:items-end lg:justify-between">
           <div>
             <div className="flex justify-center text-teal-600 lg:justify-start">
               <Link
                 href="/"
-                className="dark:text-dark_bg text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl"
+                className="dark:text-dark_primary text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl "
               >
-                {/* <Image
-                    className="md:w-[220px] w-[180px]"
-                    src={logo}
-                    alt="Logo"
-                  /> */}
-                <h2>E-School</h2>
+                {theme === "light" ? (
+                  <Image
+                    className="h-[70px] mx-auto max-w-[200px]"
+                    alt="hero"
+                    src={light_logo}
+                  />
+                ) : (
+                  <Image
+                    className="h-[70px] mx-auto max-w-[200px]"
+                    alt="hero"
+                    src={dark_logo}
+                  />
+                )}
               </Link>
+              {/* <Link
+                href="/"
+                className="dark:text-dark_primary text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl md:hidden block"
+              >
+                {theme === "light" ? (
+                  <Image
+                    className="h-[50px] w-[70%]"
+                    alt="hero"
+                    src={light_text_logo}
+                  />
+                ) : (
+                  <Image
+                    className="h-[50px] w-[70%]"
+                    alt="hero"
+                    src={dark_text_logo}
+                  />
+                )}
+              </Link> */}
             </div>
 
             <p className="mx-auto mt-6 max-w-md text-center leading-relaxed lg:text-left text-dark_bg dark:text-dark_bg mb-4">

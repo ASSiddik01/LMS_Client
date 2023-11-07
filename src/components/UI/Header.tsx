@@ -9,10 +9,17 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsPinterest, BsFacebook } from "react-icons/bs";
 import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import light_logo from "./../../../public/light_logo.png";
+import dark_logo from "./../../../public/dark_logo.png";
+import light_text_logo from "./../../../public/light_text_logo.png";
+import dark_text_logo from "./../../../public/dark_text_logo.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   const role = "admin";
 
@@ -110,14 +117,31 @@ const Header = () => {
               <div className="logo md:w-[15%] flex justify-start">
                 <Link
                   href="/"
-                  className="dark:text-dark_primary text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl"
+                  className="dark:text-dark_primary text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl hidden md:block"
                 >
-                  {/* <Image
-                    className="md:w-[220px] w-[180px]"
-                    src={logo}
-                    alt="Logo"
-                  /> */}
-                  <h2>E-School</h2>
+                  {theme === "light" ? (
+                    <Image className="h-[70px]" alt="hero" src={light_logo} />
+                  ) : (
+                    <Image className="h-[70px]" alt="hero" src={dark_logo} />
+                  )}
+                </Link>
+                <Link
+                  href="/"
+                  className="dark:text-dark_primary text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl md:hidden block"
+                >
+                  {theme === "light" ? (
+                    <Image
+                      className="h-[50px] w-[70%]"
+                      alt="hero"
+                      src={light_text_logo}
+                    />
+                  ) : (
+                    <Image
+                      className="h-[50px] w-[70%]"
+                      alt="hero"
+                      src={dark_text_logo}
+                    />
+                  )}
                 </Link>
               </div>
               {/* menu */}

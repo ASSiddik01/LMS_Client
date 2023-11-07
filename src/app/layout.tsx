@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ThemeProvider from "@/lib/ThemeProviders";
+import Providers from "@/lib/Providers";
 
 export const metadata: Metadata = {
   title: "Welcome to E-School",
@@ -15,12 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className=" bg-[#ffffff] dark:bg-[#050B2F] layout">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <Providers>
+      <html lang="en">
+        <body className=" bg-[#ffffff] dark:bg-[#050B2F] layout">
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </Providers>
   );
 }

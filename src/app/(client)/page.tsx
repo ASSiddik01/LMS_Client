@@ -1,4 +1,4 @@
-import Banner from "../sections/Banner";
+import Banner from "@/sections/Banner";
 
 const HomePage = () => {
   return (
