@@ -4,9 +4,9 @@ import Header from "@/components/UI/Header";
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="">
+    <div className="layout">
       <Header />
-      <div className={`relative top-[103px]`}>{children}</div>
+      <div className={`relative md:top-[103px] top-[50px]`}>{children}</div>
     </div>
   );
 };
