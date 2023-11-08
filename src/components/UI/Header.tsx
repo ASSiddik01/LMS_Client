@@ -48,7 +48,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed w-full layout z-[999]`}>
+    <header className={`w-full layout z-[999]`}>
       {/* Search bar */}
       <div
         id="serach_bar"
