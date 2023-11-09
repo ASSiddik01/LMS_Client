@@ -5,6 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "@/schemas/signup";
 import FormInput from "@/components/Forms/FormInput";
 import Link from "next/link";
+import { useSignUpMutation } from "@/redux/api/authApi";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 type FormValues = {
   name: string;
@@ -14,8 +17,17 @@ type FormValues = {
 };
 
 const SingUp = () => {
+  const [signUp] = useSignUpMutation();
+  const router = useRouter();
+
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    console.log(data);
+    try {
+      const res = await signUp(data).unwrap();
+      router.push("/signin");
+      toast.success("Sign up successfully!");
+    } catch (err: any) {
+      toast.error(`${err.data?.message}`);
+    }
   };
 
   return (

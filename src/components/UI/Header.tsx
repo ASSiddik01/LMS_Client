@@ -15,13 +15,23 @@ import light_logo from "./../../../public/light_logo.png";
 import dark_logo from "./../../../public/dark_logo.png";
 import light_text_logo from "./../../../public/light_text_logo.png";
 import dark_text_logo from "./../../../public/dark_text_logo.png";
+import { getUserInfo, removeUserInfo } from "@/services/auth.service";
+import { useRouter } from "next/navigation";
+import { authKey } from "@/constants/storageKey";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
 
-  const role = "admin";
+  const handleSignout = () => {
+    removeUserInfo(authKey);
+    router.push("/signin");
+  };
+
+  // @ts-ignore
+  const { role } = getUserInfo();
 
   const menu_items = [
     {
@@ -37,7 +47,6 @@ const Header = () => {
       title: "About Us",
     },
   ];
-  const handleSignout = () => {};
 
   // const handleSubmit = (e: any) => {
   //   e.preventDefault();
