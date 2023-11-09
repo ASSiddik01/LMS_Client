@@ -1,10 +1,12 @@
 "use client";
 
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import { BiUpload } from "react-icons/bi";
 import Image from "next/image";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import { useUpdatePhotoMutation } from "@/redux/api/userApi";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -19,14 +21,24 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 export default function UploadImage() {
-  const [loadImage, setLoadImage] = React.useState("");
+  const [updatePhoto] = useUpdatePhotoMutation();
+  const [loadImage, setLoadImage] = useState();
 
-  const imagehandler = (e: any) => {
+  const imagehandler = async (e: any) => {
     if (e.target.files.length !== 0) {
       const file = e.target.files[0];
       const reader: any = new FileReader();
-      reader.onload = () => {
+      reader.onload = async () => {
         setLoadImage(reader.result);
+        const base64 = await reader.result;
+        console.log({ photo: base64 });
+        try {
+          const res = await updatePhoto({ photo: base64 }).unwrap();
+          console.log(res);
+          toast.success("Update photo");
+        } catch (err: any) {
+          toast.error(`${err.data?.message}`);
+        }
       };
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -47,7 +59,7 @@ export default function UploadImage() {
         variant="contained"
         startIcon={<BiUpload />}
       >
-        Upload file
+        Upload Photo
         <VisuallyHiddenInput
           name="file"
           id="avater"

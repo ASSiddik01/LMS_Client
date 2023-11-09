@@ -1,14 +1,21 @@
 "use client";
 
+import Loading from "@/app/loading";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import UploadImage from "@/components/UI/UploadImage";
+import { useChangePasswordMutation } from "@/redux/api/authApi";
+import {
+  useGetUserProfileQuery,
+  useUpdateProfileMutation,
+} from "@/redux/api/userApi";
 import { changePasswordSchema } from "@/schemas/changePassword";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Dialog } from "@mui/material";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
 import { BsFillCameraFill } from "react-icons/bs";
 import { HiOutlineShieldCheck } from "react-icons/hi";
 
@@ -26,6 +33,15 @@ type PasswordFormValues = {
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
+  const { data: userData, isLoading: userLoading } = useGetUserProfileQuery({});
+  const [updateProfile] = useUpdateProfileMutation();
+  const [changePassword] = useChangePasswordMutation();
+
+  if (userLoading) {
+    return <Loading />;
+  }
+  // @ts-ignore
+  const { name, phone, email, address, photo } = userData?.response;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,20 +52,35 @@ const Profile = () => {
   };
 
   const defaultValues = {
-    name: "Shama",
-    email: "Shama@",
-    phone: "43124",
-    address: "cd",
+    name: name || "",
+    email: email || "",
+    phone: phone || "",
+    address: address || "",
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    console.log(data);
+    try {
+      const res = await updateProfile({
+        // @ts-ignore
+        id: userData?.response?.id,
+        body: data,
+      }).unwrap();
+      toast.success("Update successfully!");
+    } catch (err: any) {
+      toast.error(`${err.data?.message}`);
+    }
   };
 
-  const passwordSubmit: SubmitHandler<PasswordFormValues> = async (
+  const passwordHandle: SubmitHandler<PasswordFormValues> = async (
     data: any
   ) => {
-    console.log(data);
+    try {
+      const res = await changePassword(data).unwrap();
+      console.log(res);
+      toast.success("Change successfully!");
+    } catch (err: any) {
+      toast.error(`${err.data?.message}`);
+    }
   };
 
   return (
@@ -57,10 +88,10 @@ const Profile = () => {
       <div className="md:w-1/5 w-full ">
         <div className="relative">
           <Image
-            className="rounded-full mx-auto mb-4"
+            className="rounded-full mx-auto mb-4 border-2 border-light_primary dark:border-dark_primary"
             width={150}
             height={150}
-            src="https://i.ibb.co/MgsTCcv/avater.jpg"
+            src={photo?.url || "https://i.ibb.co/MgsTCcv/avater.jpg"}
             alt="profile"
           />
           <div className="edit absolute right-5 top-2">
@@ -77,10 +108,12 @@ const Profile = () => {
             />
           </div>
         </div>
-        <h4 className="text-light_primary dark:text-dark_primary text-center">
-          User Name
+        <h4 className="text-light_primary dark:text-dark_primary text-center capitalize">
+          {name}
         </h4>
-        <p className="text-light_text dark:text-dark_text text-center">email</p>
+        <p className="text-light_text dark:text-dark_text text-center lowercase">
+          {email}
+        </p>
       </div>
       <Dialog
         open={open}
@@ -146,7 +179,7 @@ const Profile = () => {
           Change Password
         </h3>
         <Form
-          submitHandler={passwordSubmit}
+          submitHandler={passwordHandle}
           resolver={yupResolver(changePasswordSchema)}
         >
           <div className="my-[10px]">

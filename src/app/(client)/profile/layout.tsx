@@ -1,6 +1,13 @@
 import ProtectedRoute from "@/utils/ProtectedRoute";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
-  return <ProtectedRoute>{children}</ProtectedRoute>;
+  return (
+    <div className="">
+      {children}
+      {/* <ProtectedRoute>
+        {children}
+      </ProtectedRoute> */}
+    </div>
+  );
 };
 export default ProfileLayout;

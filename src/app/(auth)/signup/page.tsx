@@ -24,7 +24,7 @@ const SingUp = () => {
     try {
       const res = await signUp(data).unwrap();
       router.push("/signin");
-      toast.success("Sign up successfully!");
+      toast.success("Account activation link sent to your email");
     } catch (err: any) {
       toast.error(`${err.data?.message}`);
     }

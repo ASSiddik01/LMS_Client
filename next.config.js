@@ -2,7 +2,18 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ["i.ibb.co", "jthemes.net"], // Define domains for external images
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "**",
+      },
+    ],
   },
 };
 
