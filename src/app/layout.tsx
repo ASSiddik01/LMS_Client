@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        <body className=" bg-[#ffffff] dark:bg-[#050B2F] layout">
+        <body className="mx-auto relative bg-[#ffffff] dark:bg-[#050B2F] layout">
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             {children}
             <Toaster position="top-right" reverseOrder={false} />

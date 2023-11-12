@@ -1,7 +1,7 @@
 "use client";
 
-import Footer from "@/components/UI/Footer";
-import Header from "@/components/UI/Header";
+import Footer from "@/sections/Footer";
+import Header from "@/sections/Header";
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   return (

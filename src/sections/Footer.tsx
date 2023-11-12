@@ -1,10 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
-import light_logo from "./../../../public/light_logo.png";
-import dark_logo from "./../../../public/dark_logo.png";
-import light_text_logo from "./../../../public/light_text_logo.png";
-import dark_text_logo from "./../../../public/dark_text_logo.png";
+import light_logo from "./../../public/light_logo.png";
+import dark_logo from "./../../public/dark_logo.png";
 
 const Footer = () => {
   const { theme, setTheme } = useTheme();
