@@ -60,6 +60,7 @@ export const Sidebar = ({
   };
   return (
     <Drawer
+      sx={{}}
       // @ts-ignore
       bg={theme === "light" ? "#fff" : "#050B2F"}
       color={theme === "light" ? "#000000" : "#fff"}
@@ -68,6 +69,7 @@ export const Sidebar = ({
     >
       <Toolbar
         sx={{
+          borderRight: "none !important",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -80,14 +82,27 @@ export const Sidebar = ({
             className="dark:text-dark_primary text-light_primary hover:dark:text-dark_text hover:text-light_text duration-300 text-2xl hidden md:block"
           >
             {theme === "light" ? (
-              <Image className="h-[60px]" alt="hero" src={light_logo} />
+              <Image
+                className="h-[60px] w-[150px]"
+                alt="hero"
+                src={light_logo}
+              />
             ) : (
-              <Image className="h-[60px]" alt="hero" src={dark_logo} />
+              <Image
+                className="h-[60px] w-[150px]"
+                alt="hero"
+                src={dark_logo}
+              />
             )}
           </Link>
         </div>
-        <IconButton onClick={toggleDrawer}>
-          <ChevronLeft className="text-[#259FD9] border border-[#259FD9] rounded-full " />
+        <IconButton
+          sx={{
+            marginRight: "-15px",
+          }}
+          onClick={toggleDrawer}
+        >
+          <ChevronLeft className="dark:text-dark_primary text-light_text hover:dark:text-dark_text hover:text-light_primary duration-300 border border-light_text hover:border-light_primary dark:hover:border-dark_text dark:border-dark_primary  rounded-full" />
         </IconButton>
       </Toolbar>
       <Divider />

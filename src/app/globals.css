@@ -71,6 +71,10 @@ input:disabled {
   background-color: #dbdbdb !important;
 }
 
+.MuiDrawer-paper {
+  border-right: none !important;
+}
+
 .logo_color {
   color: var(--dark_secondary);
 }

@@ -76,7 +76,6 @@ const Profile = () => {
   ) => {
     try {
       const res = await changePassword(data).unwrap();
-      console.log(res);
       toast.success("Change successfully!");
     } catch (err: any) {
       toast.error(`${err.data?.message}`);

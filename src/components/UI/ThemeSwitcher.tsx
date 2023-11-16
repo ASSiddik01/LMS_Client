@@ -6,7 +6,6 @@ import { BiSun } from "react-icons/bi";
 import { FaMoon } from "react-icons/fa";
 
 const ThemeSwitcher = ({ layout }: { layout?: string }) => {
-  console.log(layout);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   useEffect(() => {

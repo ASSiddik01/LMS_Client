@@ -10,7 +10,7 @@ type FormValues = {
   email: string;
 };
 
-const SingUp = () => {
+const ForgetPassword = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     console.log(data);
   };
@@ -51,4 +51,4 @@ const SingUp = () => {
     </div>
   );
 };
-export default SingUp;
+export default ForgetPassword;

@@ -31,10 +31,8 @@ export default function UploadImage() {
       reader.onload = async () => {
         setLoadImage(reader.result);
         const base64 = await reader.result;
-        console.log({ photo: base64 });
         try {
           const res = await updatePhoto({ photo: base64 }).unwrap();
-          console.log(res);
           toast.success("Update photo");
         } catch (err: any) {
           toast.error(`${err.data?.message}`);

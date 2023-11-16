@@ -61,8 +61,6 @@ export default function DashboardLayout({
     setOpen(!open);
   };
 
-  console.log(toggle);
-
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar
@@ -96,7 +94,7 @@ export default function DashboardLayout({
             aria-label="open drawer"
             onClick={toggleDrawer}
             sx={{
-              marginRight: "36px",
+              marginLeft: "10px",
               ...(open && { display: "none" }),
             }}
           >
