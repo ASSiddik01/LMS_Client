@@ -13,6 +13,16 @@ import { ChevronRight } from "@mui/icons-material";
 import logo from "./../../../public/light_logo.png";
 import Image from "next/image";
 import { Sidebar } from "@/sections/Sidebar";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import ThemeSwitcher from "@/components/UI/ThemeSwitcher";
+import Notification from "@/components/UI/Notification";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import icon from "./../favicon.ico";
 
 const drawerWidth: number = 240;
 
@@ -28,6 +38,7 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  boxShadow: "none",
   ...(open && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -44,39 +55,41 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = React.useState(true);
+  const [toggle, setToggle] = React.useState("");
+  const { theme, setTheme } = useTheme();
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  // time and date
-  // const date = moment().format("dddd, Do MMM YYYY");
-  // let time = moment().format("h:mm:ss A");
-
-  // const [cTime, setCTime] = React.useState("");
-  // const updateTime = () => {
-  //   time = moment().format("h:mm:ss A");
-  //   setCTime(time);
-  // };
-
-  // setInterval(updateTime, 1000);
+  console.log(toggle);
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar style={{ background: "#090E30" }} position="absolute" open={open}>
+      <AppBar
+        className="!bg-light_bg dark:!bg-dark_bg"
+        position="absolute"
+        open={open}
+      >
         <Toolbar
-          style={{ padding: "0px 20px" }}
+          style={{ padding: "0px 10px " }}
           sx={{
             pr: "10px", // keep right padding when drawer closed
           }}
         >
-          <Typography
-            sx={{
-              marginRight: "36px",
-              ...(open && { display: "none" }),
-            }}
-          >
-            Logo
-          </Typography>
+          <Link href="/">
+            <Typography
+              sx={{
+                marginRight: "10px",
+                ...(open && { display: "none" }),
+              }}
+            >
+              {theme === "light" ? (
+                <Image className="h-[50px] w-[50px]" alt="hero" src={icon} />
+              ) : (
+                <Image className="h-[50px] w-[50px]" alt="hero" src={icon} />
+              )}
+            </Typography>
+          </Link>
           <IconButton
             edge="start"
             color="inherit"
@@ -87,7 +100,7 @@ export default function DashboardLayout({
               ...(open && { display: "none" }),
             }}
           >
-            <ChevronRight className="text-[#259FD9] border border-[#259FD9] rounded-full" />
+            <ChevronRight className="dark:text-dark_primary text-light_text hover:dark:text-dark_text hover:text-light_primary duration-300 border border-light_text hover:border-light_primary dark:hover:border-dark_text dark:border-dark_primary  rounded-full" />
           </IconButton>
           <Typography
             component="h1"
@@ -96,24 +109,33 @@ export default function DashboardLayout({
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            {/* <div
-              className={`text-sm flex text-[#259FD9]  flex-col text-center`}
-            >
-              <span> {date} </span>
-              <span> {cTime} </span>
-            </div> */}
+            {/* You can write here */}
           </Typography>
-          <IconButton color="inherit">user button</IconButton>
+          <Box display="flex">
+            <IconButton>
+              <ThemeSwitcher layout="admin" />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                setToggle("notification");
+              }}
+            >
+              <NotificationsOutlinedIcon className="dark:text-dark_primary text-light_text hover:dark:text-dark_text hover:text-light_primary duration-300" />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                setToggle("userProfile");
+              }}
+            >
+              <PersonOutlinedIcon className="dark:text-dark_primary text-light_text hover:dark:text-dark_text hover:text-light_primary duration-300" />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <Sidebar open={open} setOpen={setOpen} />
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
           flexGrow: 1,
           height: "100vh",
           overflow: "auto",
@@ -122,16 +144,17 @@ export default function DashboardLayout({
         <Toolbar />
         <Container
           style={{ padding: "15px" }}
-          className="bg-[#0d1441]"
+          className="bg-light_secondary dark:bg-dark_secondary"
           maxWidth="xl"
         >
           <div
             style={{ height: `calc(100vh - 94px)` }}
-            className="bg-[#040928] rounded-lg p-4"
+            className="bg-light_bg dark:bg-dark_bg rounded-lg p-4"
           >
             {children}
           </div>
         </Container>
+        {toggle === "notification" && <Notification />}
       </Box>
     </Box>
   );
