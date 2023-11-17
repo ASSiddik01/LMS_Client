@@ -91,6 +91,11 @@ input:disabled {
   border: none !important;
 }
 
+.border_radius {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 /* site */
 
 .logo_color {

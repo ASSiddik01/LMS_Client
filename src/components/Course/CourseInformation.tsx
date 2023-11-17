@@ -53,33 +53,23 @@ const CourseInformation = ({
       reader.onload = async () => {
         setLoadImage(reader.result);
         const base64 = await reader.result;
-        // try {
-        //   const res = await updatePhoto({ photo: base64 }).unwrap();
-        //   toast.success("Update photo");
-        // } catch (err: any) {
-        //   toast.error(`${err.data?.message}`);
-        // }
       };
       reader.readAsDataURL(e.target.files[0]);
     }
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
-    console.log({ ...data, thumbnail: loadImage });
+    const info = { ...data, thumbnail: loadImage };
+    setCourseInfo(info);
     setActive(active + 1);
-    // try {
-    //   const res = await signUp(data).unwrap();
-    //   router.push("/signin");
-    //   toast.success("Account activation link sent to your email");
-    // } catch (err: any) {
-    //   toast.error(`${err.data?.message}`);
-    // }
   };
   return (
     <div className="md:w-[90%] ">
-      <h5 className="text-2xl">Course Information</h5>
+      <h5 className="text-2xl text-light_text dark:text-dark_text duration-300">
+        Course Information
+      </h5>
       <Form submitHandler={onSubmit} resolver={yupResolver(courseInformation)}>
-        <div className="my-[10px]">
+        <div className="my-2">
           <FormInput
             name="name"
             type="text"
@@ -88,7 +78,7 @@ const CourseInformation = ({
             required
           />
         </div>
-        {/* <div className="my-[10px]">
+        {/* <div className="my-2">
           <FormRichTextArea
             value=""
             height="250"
@@ -97,7 +87,7 @@ const CourseInformation = ({
             placeholder="Course description"
           />
         </div> */}
-        <div className="my-[10px]">
+        <div className="my-2">
           <FormInput
             name="tags"
             type="text"
@@ -107,7 +97,7 @@ const CourseInformation = ({
           />
         </div>
         <div className="md:flex gap-4 ">
-          <div className="md:w-1/2 my-[10px]">
+          <div className="md:w-1/2 my-2">
             <FormInput
               name="price"
               type="text"
@@ -116,7 +106,7 @@ const CourseInformation = ({
               required
             />
           </div>
-          <div className="md:w-1/2 my-[10px]">
+          <div className="md:w-1/2 my-2">
             <FormInput
               name="estimatedPrice"
               type="text"
@@ -127,7 +117,7 @@ const CourseInformation = ({
           </div>
         </div>
         <div className="md:flex gap-4 ">
-          <div className="md:w-1/2 my-[10px]">
+          <div className="md:w-1/2 my-2">
             <FormInput
               name="level"
               type="text"
@@ -136,7 +126,7 @@ const CourseInformation = ({
               required
             />
           </div>
-          <div className="md:w-1/2 my-[10px]">
+          <div className="md:w-1/2 my-2">
             <FormInput
               name="demoUrl"
               type="text"
@@ -146,7 +136,7 @@ const CourseInformation = ({
             />
           </div>
         </div>
-        <div className="my-[10px] flex flex-col">
+        <div className="my-2 flex flex-col">
           {loadImage && (
             <Image
               width={800}

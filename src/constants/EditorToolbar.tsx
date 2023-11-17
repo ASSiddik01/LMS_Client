@@ -92,7 +92,7 @@ export const formats = [
 // Quill Toolbar component
 export const QuillToolbar = (props: any) => {
   return (
-    <div className="bg-dark_text dark:text-dark_bg rounded-tr-md  rounded-tl-md  border border-light_primary dark:border-dark_primary">
+    <div className="bg-dark_text dark:text-dark_bg !border !border-light_primary dark:!border-dark_primary border_radius">
       {props.toolbarId !== undefined && (
         <div id={props.toolbarId}>
           <span className="ql-formats">

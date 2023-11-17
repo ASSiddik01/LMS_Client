@@ -19,6 +19,8 @@ const CreateCourse = () => {
     demoUrl: "",
     thumbnail: "",
   });
+
+  console.log(courseInfo);
   const [benifits, setBenifits] = useState([{ title: "" }]);
   const [prerequisites, setPrerequisites] = useState([{ title: "" }]);
   const [courseContent, setCourseContent] = useState([
@@ -33,13 +35,50 @@ const CreateCourse = () => {
           url: "",
         },
       ],
-      suggestion: "",
     },
   ]);
 
-  const [courseData, setCourseData] = useState({});
+  const [course, setCourse] = useState({});
 
-  const handleSubmit = async () => {};
+  const handleSubmit = async () => {
+    console.log("submit");
+    const formatBenifits = benifits.map((benifit) => ({
+      title: benifit.title,
+    }));
+
+    const formatPrerequisites = prerequisites.map((prerequisite) => ({
+      title: prerequisite.title,
+    }));
+
+    const formatCourseContent = courseContent.map((content) => ({
+      title: content.title,
+      videoUrl: content.videoUrl,
+      description: content.description,
+      videoSection: content.videoSection,
+      links: content.links.map((link) => ({
+        title: link.title,
+        url: link.url,
+      })),
+    }));
+
+    const data = {
+      name: courseInfo.name,
+      description: courseInfo.description,
+      price: courseInfo.price,
+      estimatedPrice: courseInfo.estimatedPrice,
+      tags: courseInfo.tags,
+      level: courseInfo.level,
+      demoUrl: courseInfo.demoUrl,
+      thumbnail: courseInfo.thumbnail,
+      benifits: formatBenifits,
+      prerequisites: formatPrerequisites,
+      courseContent: formatCourseContent,
+    };
+
+    setCourse(data);
+
+    console.log(data);
+  };
 
   return (
     <div className="">

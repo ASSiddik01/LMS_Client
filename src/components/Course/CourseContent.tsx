@@ -127,12 +127,15 @@ const CourseContent = ({
       toast.error("All sections are required");
     } else {
       setActive(active + 1);
+      handleCourseSubmit();
     }
   };
 
   return (
     <div className="md:w-[90%] ">
-      <h5 className="text-2xl">Course Content</h5>
+      <h5 className="text-2xl text-light_text dark:text-dark_text duration-300">
+        Course Content
+      </h5>
       <form onSubmit={handleSubmit}>
         {courseContent?.map((item: any, i: number) => {
           const showSectionInput =
@@ -141,7 +144,7 @@ const CourseContent = ({
           return (
             <div
               key={i}
-              className={`w-full bg-light_secondary p-4 rounded-md border-b ${
+              className={`w-full bg-light_secondary dark:bg-[#171f5c] p-4 rounded-md border-b ${
                 showSectionInput ? "mt-2" : "mb-0"
               } `}
             >
@@ -186,7 +189,7 @@ const CourseContent = ({
                   <DeleteForever
                     className={`mr-2 ${
                       i > 0 ? "cursor-pointer" : "cursor-no-drop"
-                    } `}
+                    } text-light_primary dark:text-dark_primary`}
                     onClick={() => {
                       if (i > 0) {
                         const updateData = [...courseContent];
@@ -197,7 +200,7 @@ const CourseContent = ({
                   />
 
                   <ExpandMore
-                    className="!transition-all !duration-300"
+                    className="!transition-all !duration-300 text-light_primary dark:text-dark_primary"
                     sx={{
                       transform: collapsed[i]
                         ? "rotate(180deg)"
@@ -265,7 +268,7 @@ const CourseContent = ({
                             Link {linkI + 1}
                           </h1>
                           <DeleteForever
-                            className={`${
+                            className={`text-light_primary dark:text-dark_primary ${
                               linkI === 0 ? "cursor-no-drop" : "cursor-pointer"
                             } `}
                             onClick={() => {

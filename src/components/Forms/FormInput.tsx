@@ -37,7 +37,7 @@ const FormInput = ({
 
   return (
     <>
-      <h1 className="mb-1 text-light_text dark:text-dark_text font-medium">
+      <h1 className="mb-1 text-light_text dark:text-dark_text font-medium text-sm">
         {label ? label : null}
         {required && label ? (
           <span
@@ -63,7 +63,7 @@ const FormInput = ({
               value={value ? value : field.value}
               name={name}
               type="password"
-              className="w-full bg-dark_text dark:text-dark_bg rounded-md border border-light_primary dark:border-dark_primary focus:ring-2 focus:ring-light_primary dark:focus:ring-dark_primary focus:border-light_primary dark:focus:border-dark_primary text-base outline-none py-1 px-3 leading-8 transition-colors duration-300 ease-in-out"
+              className="w-full bg-dark_text dark:text-dark_bg rounded-md border border-light_primary dark:border-dark_primary focus:ring-2 focus:ring-light_primary dark:focus:ring-dark_primary focus:border-light_primary dark:focus:border-dark_primary text-base outline-none py-0 px-3 leading-8 transition-colors duration-300 ease-in-out"
             />
           ) : (
             <input
@@ -73,7 +73,7 @@ const FormInput = ({
               value={value ? value : field.value}
               name={name}
               type={type}
-              className="w-full bg-dark_text dark:text-dark_bg rounded-md border border-light_primary dark:border-dark_primary focus:ring-2 focus:ring-light_primary dark:focus:ring-dark_primary focus:border-light_primary dark:focus:border-dark_primary text-base outline-none py-1 px-3 leading-8 transition-colors duration-300 ease-in-out"
+              className="w-full bg-dark_text dark:text-dark_bg rounded-md border border-light_primary dark:border-dark_primary focus:ring-2 focus:ring-light_primary dark:focus:ring-dark_primary focus:border-light_primary dark:focus:border-dark_primary text-base outline-none py-0 px-3 leading-8 transition-colors duration-300 ease-in-out"
             />
           )
         }

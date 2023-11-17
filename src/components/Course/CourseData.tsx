@@ -77,10 +77,14 @@ const CourseData = ({
 
   return (
     <div className="md:w-[90%] ">
-      <h5 className="text-2xl">Course Data</h5>
+      <h5 className="text-2xl text-light_text dark:text-dark_text duration-300">
+        Course Data
+      </h5>
       <Form submitHandler={onSubmit}>
         <div className="benifits">
-          <p className="text-md">Course Benifits</p>
+          <p className="text-md text-light_text dark:text-dark_text duration-300">
+            Course Benifits
+          </p>
           {benifits.map((benifit: any, i: number) => (
             <div key={i} className="my-[10px]">
               <FormInput
@@ -106,7 +110,9 @@ const CourseData = ({
           </div>
         </div>
         <div className="prerequisites">
-          <p className="text-md">Course Prerequisites</p>
+          <p className="text-md text-light_text dark:text-dark_text duration-300">
+            Course Prerequisites
+          </p>
           {prerequisites.map((benifit: any, i: number) => (
             <div key={i} className="my-[10px]">
               <FormInput

@@ -22,8 +22,10 @@ const FormRichTextArea = ({
 }: TextAreaProps) => {
   const { control } = useFormContext();
   return (
-    <div className={`flex flex-col  w-full`}>
-      {label ? label : null}
+    <div className={`flex flex-col w-full text-sm`}>
+      <h1 className="mb-1 text-light_text dark:text-dark_text font-medium text-sm">
+        {label ? label : null}
+      </h1>
       <Controller
         name={name}
         control={control}
