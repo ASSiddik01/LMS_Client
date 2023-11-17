@@ -1,5 +1,6 @@
 "use client";
 
+import CourseContent from "@/components/Course/CourseContent";
 import CourseData from "@/components/Course/CourseData";
 import CourseInformation from "@/components/Course/CourseInformation";
 import CourseOptions from "@/components/Course/CourseOptions";
@@ -7,7 +8,7 @@ import PageHeading from "@/components/UI/PageHeading";
 import { useState } from "react";
 
 const CreateCourse = () => {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(2);
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
@@ -20,22 +21,25 @@ const CreateCourse = () => {
   });
   const [benifits, setBenifits] = useState([{ title: "" }]);
   const [prerequisites, setPrerequisites] = useState([{ title: "" }]);
-  console.log(benifits, prerequisites);
-  const [courseContentData, setCourseContentData] = useState({
-    videoUrl: "",
-    title: "",
-    description: "",
-    videoSection: "",
-    links: [
-      {
-        title: "",
-        url: "",
-      },
-    ],
-    suggestion: "",
-  });
+  const [courseContent, setCourseContent] = useState([
+    {
+      videoUrl: "",
+      title: "Video Title",
+      description: "",
+      videoSection: "Section Title",
+      links: [
+        {
+          title: "",
+          url: "",
+        },
+      ],
+      suggestion: "",
+    },
+  ]);
 
   const [courseData, setCourseData] = useState({});
+
+  const handleSubmit = async () => {};
 
   return (
     <div className="">
@@ -58,6 +62,15 @@ const CreateCourse = () => {
               setPrerequisites={setPrerequisites}
               active={active}
               setActive={setActive}
+            />
+          )}
+          {active === 2 && (
+            <CourseContent
+              courseContent={courseContent}
+              setCourseContent={setCourseContent}
+              active={active}
+              setActive={setActive}
+              handleSubmit={handleSubmit}
             />
           )}
         </div>

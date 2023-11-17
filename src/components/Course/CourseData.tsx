@@ -71,6 +71,10 @@ const CourseData = ({
     }
   };
 
+  const handlePrev = () => {
+    setActive(active - 1);
+  };
+
   return (
     <div className="md:w-[90%] ">
       <h5 className="text-2xl">Course Data</h5>
@@ -128,7 +132,12 @@ const CourseData = ({
           </div>
         </div>
         <div className="flex justify-between">
-          <div></div>
+          <button
+            onClick={handlePrev}
+            className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded-md text-lg hover:opacity-80 duration-300"
+          >
+            Previous
+          </button>
           <button
             type="submit"
             className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded-md text-lg hover:opacity-80 duration-300"
