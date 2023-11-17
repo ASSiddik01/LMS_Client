@@ -39,7 +39,7 @@ const FormInput = ({
     <>
       <h1 className="mb-1 text-light_text dark:text-dark_text font-medium">
         {label ? label : null}
-        {required ? (
+        {required && label ? (
           <span
             style={{
               color: "red",

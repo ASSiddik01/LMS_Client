@@ -1,12 +1,13 @@
 "use client";
 
+import CourseData from "@/components/Course/CourseData";
 import CourseInformation from "@/components/Course/CourseInformation";
 import CourseOptions from "@/components/Course/CourseOptions";
 import PageHeading from "@/components/UI/PageHeading";
 import { useState } from "react";
 
 const CreateCourse = () => {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
@@ -19,6 +20,7 @@ const CreateCourse = () => {
   });
   const [benifits, setBenifits] = useState([{ title: "" }]);
   const [prerequisites, setPrerequisites] = useState([{ title: "" }]);
+  console.log(benifits, prerequisites);
   const [courseContentData, setCourseContentData] = useState({
     videoUrl: "",
     title: "",
@@ -44,6 +46,16 @@ const CreateCourse = () => {
             <CourseInformation
               courseInfo={courseInfo}
               setCourseInfo={setCourseInfo}
+              active={active}
+              setActive={setActive}
+            />
+          )}
+          {active === 1 && (
+            <CourseData
+              benifits={benifits}
+              setBenifits={setBenifits}
+              prerequisites={prerequisites}
+              setPrerequisites={setPrerequisites}
               active={active}
               setActive={setActive}
             />

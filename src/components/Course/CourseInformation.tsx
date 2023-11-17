@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { courseInformation } from "@/schemas/course";
 import FormInput from "../Forms/FormInput";
 import FormRichTextArea from "../Forms/FormRichTextArea";
-import FormTextArea from "../Forms/FormTextArea";
 import Image from "next/image";
 import Button from "@mui/material/Button";
 import { BiUpload } from "react-icons/bi";
@@ -78,7 +77,7 @@ const CourseInformation = ({
   };
   return (
     <div className="md:w-[90%] ">
-      <h5 className="">Course Information</h5>
+      <h5 className="text-2xl">Course Information</h5>
       <Form submitHandler={onSubmit} resolver={yupResolver(courseInformation)}>
         <div className="my-[10px]">
           <FormInput
@@ -89,7 +88,7 @@ const CourseInformation = ({
             required
           />
         </div>
-        <div className="my-[10px]">
+        {/* <div className="my-[10px]">
           <FormRichTextArea
             value=""
             height="250"
@@ -97,7 +96,7 @@ const CourseInformation = ({
             label="Description"
             placeholder="Course description"
           />
-        </div>
+        </div> */}
         <div className="my-[10px]">
           <FormInput
             name="tags"
@@ -107,8 +106,8 @@ const CourseInformation = ({
             required
           />
         </div>
-        <div className="flex gap-4 ">
-          <div className="w-1/2 my-[10px]">
+        <div className="md:flex gap-4 ">
+          <div className="md:w-1/2 my-[10px]">
             <FormInput
               name="price"
               type="text"
@@ -117,7 +116,7 @@ const CourseInformation = ({
               required
             />
           </div>
-          <div className="w-1/2 my-[10px]">
+          <div className="md:w-1/2 my-[10px]">
             <FormInput
               name="estimatedPrice"
               type="text"
@@ -127,8 +126,8 @@ const CourseInformation = ({
             />
           </div>
         </div>
-        <div className="flex gap-4 ">
-          <div className="w-1/2 my-[10px]">
+        <div className="md:flex gap-4 ">
+          <div className="md:w-1/2 my-[10px]">
             <FormInput
               name="level"
               type="text"
@@ -137,7 +136,7 @@ const CourseInformation = ({
               required
             />
           </div>
-          <div className="w-1/2 my-[10px]">
+          <div className="md:w-1/2 my-[10px]">
             <FormInput
               name="demoUrl"
               type="text"
@@ -173,12 +172,15 @@ const CourseInformation = ({
             />
           </Button>
         </div>
-        <button
-          type="submit"
-          className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded text-lg hover:opacity-80 duration-300"
-        >
-          Next
-        </button>
+        <div className="flex justify-between">
+          <div></div>
+          <button
+            type="submit"
+            className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded-md text-lg hover:opacity-80 duration-300"
+          >
+            Next
+          </button>
+        </div>
       </Form>
     </div>
   );
