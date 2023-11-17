@@ -71,7 +71,7 @@ export default function DashboardLayout({
         <Toolbar
           style={{ padding: "0px 10px " }}
           sx={{
-            pr: "10px", // keep right padding when drawer closed
+            pr: "8px", // keep right padding when drawer closed
           }}
         >
           <Link href="/">
@@ -147,7 +147,7 @@ export default function DashboardLayout({
         >
           <div
             style={{ height: `calc(100vh - 94px)` }}
-            className="bg-light_bg dark:bg-dark_bg rounded-lg p-4"
+            className="bg-light_bg dark:bg-dark_bg rounded-lg p-4 overflow-y-auto"
           >
             {children}
           </div>

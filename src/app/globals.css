@@ -41,6 +41,17 @@
   --swiper-theme-color: #000 !important;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(216, 216, 216);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 * {
   font-family: "Roboto Slab", sans-serif;
   margin: 0;

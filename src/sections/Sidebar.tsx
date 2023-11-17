@@ -13,7 +13,7 @@ import Image from "next/image";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Dashboard } from "@mui/icons-material";
+import { Dashboard, CardMembership } from "@mui/icons-material";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 
@@ -105,7 +105,10 @@ export const Sidebar = ({
           <ChevronLeft className="dark:text-dark_primary text-light_text hover:dark:text-dark_text hover:text-light_primary duration-300 border border-light_text hover:border-light_primary dark:hover:border-dark_text dark:border-dark_primary  rounded-full" />
         </IconButton>
       </Toolbar>
-      <Divider />
+
+      <div className="text-sm pl-2 text-light_primary dark:text-dark_primary duration-300 mt-2">
+        General
+      </div>
       <List sx={{ padding: "10px" }} component="nav">
         <Link href={`/dashboard`}>
           <ListItemButton
@@ -118,11 +121,36 @@ export const Sidebar = ({
             style={{ borderBottom: `1px solid #259FD9` }}
           >
             <ListItemIcon>
-              <Dashboard className="text-light_primary dark:text-dark_primary" />
+              <Dashboard className="text-light_primary dark:text-dark_primary duration-300" />
             </ListItemIcon>
             <ListItemText
               primaryTypographyProps={{ fontSize: "15px" }}
               primary="Dashboard"
+            />
+          </ListItemButton>
+        </Link>
+      </List>
+      {/* Course */}
+      <div className="text-sm pl-2 text-light_primary dark:text-dark_primary duration-300 mt-2">
+        Course
+      </div>
+      <List sx={{ padding: "10px" }} component="nav">
+        <Link href={`/create-course`}>
+          <ListItemButton
+            sx={{
+              padding: {
+                xs: "8px",
+                md: "8px 16px",
+              },
+            }}
+            style={{ borderBottom: `1px solid #259FD9` }}
+          >
+            <ListItemIcon>
+              <CardMembership className="text-light_primary dark:text-dark_primary duration-300" />
+            </ListItemIcon>
+            <ListItemText
+              primaryTypographyProps={{ fontSize: "15px" }}
+              primary="Create Course"
             />
           </ListItemButton>
         </Link>
