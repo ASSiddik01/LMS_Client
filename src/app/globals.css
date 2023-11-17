@@ -86,6 +86,13 @@ input:disabled {
   border-right: none !important;
 }
 
+.ql-container,
+.ql-toolbar {
+  border: none !important;
+}
+
+/* site */
+
 .logo_color {
   color: var(--dark_secondary);
 }

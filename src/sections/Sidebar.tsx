@@ -98,7 +98,7 @@ export const Sidebar = ({
         </div>
         <IconButton
           sx={{
-            marginRight: "-15px",
+            marginRight: "-8px",
           }}
           onClick={toggleDrawer}
         >

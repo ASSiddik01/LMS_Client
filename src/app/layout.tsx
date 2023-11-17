@@ -3,6 +3,7 @@ import "./globals.css";
 import ThemeProvider from "@/lib/ThemeProviders";
 import Providers from "@/lib/Providers";
 import { Toaster } from "react-hot-toast";
+import "react-quill/dist/quill.snow.css";
 
 export const metadata: Metadata = {
   title: "Welcome to E-School",
