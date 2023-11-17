@@ -83,6 +83,53 @@ const CourseContent = ({
     }
   };
 
+  const handleAddSection = () => {
+    if (
+      courseContent[courseContent.length - 1].title === "" ||
+      courseContent[courseContent.length - 1].description === "" ||
+      courseContent[courseContent.length - 1].videoUrl === "" ||
+      courseContent[courseContent.length - 1].links[0].title === "" ||
+      courseContent[courseContent.length - 1].links[0].url === ""
+    ) {
+      toast.error("All contents are required");
+    } else {
+      setActiveSection(activeSection + 1);
+      const newSection = {
+        videoUrl: "",
+        title: "",
+        description: "",
+        videoSection: `Section Title ${activeSection}`,
+        links: [
+          {
+            title: "",
+            url: "",
+          },
+        ],
+      };
+
+      setCourseContent([...courseContent, newSection]);
+    }
+  };
+
+  const handlePrev = () => {
+    setActive(active - 1);
+  };
+
+  const handleNext = (e: any) => {
+    e.preventDefault();
+    if (
+      courseContent[courseContent.length - 1].title === "" ||
+      courseContent[courseContent.length - 1].description === "" ||
+      courseContent[courseContent.length - 1].videoUrl === "" ||
+      courseContent[courseContent.length - 1].links[0].title === "" ||
+      courseContent[courseContent.length - 1].links[0].url === ""
+    ) {
+      toast.error("All sections are required");
+    } else {
+      setActive(active + 1);
+    }
+  };
+
   return (
     <div className="md:w-[90%] ">
       <h5 className="text-2xl">Course Content</h5>
@@ -117,7 +164,7 @@ const CourseContent = ({
               )}
               <div className="w-full flex justify-between items-start my-0">
                 {collapsed[i] ? (
-                  <>
+                  <div onClick={() => handleCollapsed(i)}>
                     {item.title ? (
                       <p className="text-light_text dark:text-dark_text">
                         {i + 1}. {item.title}
@@ -129,7 +176,7 @@ const CourseContent = ({
                         </p>
                       </>
                     )}
-                  </>
+                  </div>
                 ) : (
                   <div></div>
                 )}
@@ -289,6 +336,38 @@ const CourseContent = ({
             </div>
           );
         })}
+        <div className="">
+          <div className="my-[10px] flex flex-col">
+            <Button
+              onClick={() => {
+                handleAddSection();
+              }}
+              sx={{ textTransform: `capitalize` }}
+              className="!text-light_text  !bg-dark_text dark:!bg-dark_text py-2 px-6 text-lg hover:opacity-80 duration-300 rounded-md !border !border-light_primary dark:!border-dark_primary capitalize !shadow-none"
+              component="label"
+              variant="outlined"
+              startIcon={<AddSharp />}
+            >
+              Add New Section
+            </Button>
+          </div>
+        </div>
+        <div className="flex justify-between">
+          <button
+            onClick={handlePrev}
+            className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded-md text-lg hover:opacity-80 duration-300"
+          >
+            Previous
+          </button>
+          <button
+            onClick={(e) => {
+              handleNext(e);
+            }}
+            className="text-dark_text dark:text-dark_bg bg-light_primary dark:bg-dark_primary border-0 py-2 px-6  rounded-md text-lg hover:opacity-80 duration-300"
+          >
+            Next
+          </button>
+        </div>
       </form>
     </div>
   );
