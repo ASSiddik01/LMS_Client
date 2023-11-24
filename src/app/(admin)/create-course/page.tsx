@@ -4,11 +4,12 @@ import CourseContent from "@/components/Course/CourseContent";
 import CourseData from "@/components/Course/CourseData";
 import CourseInformation from "@/components/Course/CourseInformation";
 import CourseOptions from "@/components/Course/CourseOptions";
+import CoursePreview from "@/components/Course/CoursePreview";
 import PageHeading from "@/components/UI/PageHeading";
 import { useState } from "react";
 
 const CreateCourse = () => {
-  const [active, setActive] = useState(2);
+  const [active, setActive] = useState(3);
   const [courseInfo, setCourseInfo] = useState({
     name: "",
     description: "",
@@ -20,7 +21,6 @@ const CreateCourse = () => {
     thumbnail: "",
   });
 
-  console.log(courseInfo);
   const [benifits, setBenifits] = useState([{ title: "" }]);
   const [prerequisites, setPrerequisites] = useState([{ title: "" }]);
   const [courseContent, setCourseContent] = useState([
@@ -76,8 +76,10 @@ const CreateCourse = () => {
     };
 
     setCourse(data);
+  };
 
-    console.log(data);
+  const handleCourseCreate = async (e: any) => {
+    const data = course;
   };
 
   return (
@@ -110,6 +112,14 @@ const CreateCourse = () => {
               active={active}
               setActive={setActive}
               handleSubmit={handleSubmit}
+            />
+          )}
+          {active === 3 && (
+            <CoursePreview
+              course={course}
+              active={active}
+              setActive={setActive}
+              handleCourseCreate={handleCourseCreate}
             />
           )}
         </div>
